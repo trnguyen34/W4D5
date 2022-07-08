@@ -54,7 +54,7 @@ arr = [5, 5, 6, 7, 8, 9]
 
 #p binary_search(arr, 11)
 
-p okay_two_sum?(arr, 10) # => should be true
+# p okay_two_sum?(arr, 10) # => should be true
 # p bad_two_sum?(arr, 10) # => should be false
 # p bad_two_sum?(arr, 8) # => should be true
 
@@ -67,14 +67,14 @@ def best_two_sum?(arr, num)
 
     hash.each do |k, v|
         target = num - k
-        return if hash.has_key?(target)
+        return true if hash.has_key?(target) && k != target
     end
 
     false
 end
 
-# p okay_two_sum?(arr, 6) # => should be true
-# p bad_two_sum?(arr, 10) # => should be false
-# p bad_two_sum?(arr, 8) # => should be true
+p okay_two_sum?(arr, 6) # => should be true
+ p bad_two_sum?(arr, 10) # => should be false
+p bad_two_sum?(arr, 8) # => should be true
 
 #O(n)
