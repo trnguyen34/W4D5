@@ -53,7 +53,6 @@ def largest_contiguous_subsum(list)
     largest_sum = list.sum
     current = list.first
     (1...list.length).each do |i|
-        debugger
         current = 0 if current < 0
         current += list[i]
         largest_sum = current if current > largest_sum
