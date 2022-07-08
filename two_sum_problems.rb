@@ -1,3 +1,5 @@
+require "byebug"
+
 def bad_two_sum?(arr, num)
     (0...arr.length).each do |i|
         (i+1...arr.length).each do |j|
@@ -16,9 +18,11 @@ arr = [0, 1, 5, 7]
 
 def okay_two_sum?(arr, num)
     sorted_arr = arr.sort
-    sorted_arr.each do |ele|
+    sorted_arr.each_with_index do |ele, i|
+        #debugger
         target = num - ele
-        return true if binary_search(sorted_arr, target)
+        indx = binary_search(sorted_arr, target)
+        return true if indx != i && indx != nil
     end
 
     false
@@ -33,19 +37,24 @@ def binary_search(an_array, item)
         i = (first + last) / 2
 
         if an_array[i] == item
-            return true
+            return i
         elsif an_array[i] > item
             last = i - 1
         elsif an_array[i] < item
             first = i + 1
         else
-            return false
+            return nil
         end
     end
 end
 
-#p binary_search([1, 2, 3, 4, 5, 6, 7, 8, 9], 7) 
-# p okay_two_sum?(arr, 6) # => should be true
+
+
+arr = [5, 5, 6, 7, 8, 9]
+
+#p binary_search(arr, 11)
+
+p okay_two_sum?(arr, 10) # => should be true
 # p bad_two_sum?(arr, 10) # => should be false
 # p bad_two_sum?(arr, 8) # => should be true
 
@@ -64,8 +73,8 @@ def best_two_sum?(arr, num)
     false
 end
 
-p okay_two_sum?(arr, 6) # => should be true
-p bad_two_sum?(arr, 10) # => should be false
-p bad_two_sum?(arr, 8) # => should be true
+# p okay_two_sum?(arr, 6) # => should be true
+# p bad_two_sum?(arr, 10) # => should be false
+# p bad_two_sum?(arr, 8) # => should be true
 
 #O(n)
